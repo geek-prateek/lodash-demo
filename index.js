@@ -1,4 +1,3 @@
-// Lodash Project Demonstrating All Major Functions
 const _ = require('lodash');
 
 // 1. _.get and _.set
