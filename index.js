@@ -148,3 +148,85 @@ console.log(_.unzip(zipped)); // [['a', 'b'], [1, 2]]
 // 30. _.invert
 const colorMap = { red: '#FF0000', green: '#00FF00' };
 console.log(_.invert(colorMap)); // { '#FF0000': 'red', '#00FF00': 'green' }
+
+// 31. _.find and _.findLast
+const people = [
+  { name: 'Tom', active: false },
+  { name: 'Jerry', active: true },
+  { name: 'Spike', active: false }
+];
+console.log(_.find(people, { active: true })); // { name: 'Jerry', active: true }
+console.log(_.findLast(people, { active: false })); // { name: 'Spike', active: false }
+
+// 32. _.pull and _.remove
+let numbers1 = [1, 2, 3, 4, 5];
+_.pull(numbers1, 2, 4);
+console.log(numbers1); // [1, 3, 5]
+
+let numbers2 = [1, 2, 3, 4, 5];
+_.remove(numbers2, n => n % 2 === 0);
+console.log(numbers2); // [1, 3, 5]
+
+// 33. _.fill
+let filledArray = Array(5);
+_.fill(filledArray, 'X');
+console.log(filledArray); // ['X', 'X', 'X', 'X', 'X']
+
+// 34. _.reject
+const mixedUsers = [
+  { user: 'barney', active: false },
+  { user: 'fred', active: true }
+];
+console.log(_.reject(mixedUsers, { active: true }));
+// [{ user: 'barney', active: false }]
+
+// 35. _.clone (shallow)
+const simple = { a: 1, b: 2 };
+const shallow = _.clone(simple);
+shallow.b = 100;
+console.log(simple.b); // 2 (not affected because shallow clone)
+
+// 36. _.intersectionBy
+console.log(_.intersectionBy([2.1, 1.2], [4.3, 2.4], Math.floor)); // [2.1]
+
+// 37. _.sortBy
+const items = [
+  { name: 'banana', qty: 10 },
+  { name: 'apple', qty: 5 },
+  { name: 'orange', qty: 20 }
+];
+console.log(_.sortBy(items, ['qty']));
+// [{ name: 'apple', qty: 5 }, { name: 'banana', qty: 10 }, { name: 'orange', qty: 20 }]
+
+// 38. _.flattenDepth
+const deepArray = [1, [2, [3, [4, [5]]]]];
+console.log(_.flattenDepth(deepArray, 2)); // [1, 2, 3, [4, [5]]]
+
+// 39. _.delay
+_.delay(() => console.log('Delayed log after 1s'), 1000); // Logs after 1 second
+
+// 40. _.identity
+console.log(_.identity('hello')); // 'hello'
+
+// 41. _.constant
+const alwaysFive = _.constant(5);
+console.log(alwaysFive()); // 5
+
+// 42. _.noop
+console.log(_.noop()); // undefined (no-operation function)
+
+// 43. _.nth
+console.log(_.nth(['a', 'b', 'c', 'd'], 2)); // 'c'
+console.log(_.nth(['a', 'b', 'c', 'd'], -1)); // 'd'
+
+// 44. _.sample and _.sampleSize
+console.log(_.sample([1, 2, 3, 4])); // Random element like 3
+console.log(_.sampleSize([1, 2, 3, 4], 2)); // Random 2 elements like [4, 1]
+
+// 45. _.transform (like reduce but for objects)
+const object = { a: 1, b: 2, c: 3 };
+const resultObj = _.transform(object, (result, val, key) => {
+  result[key] = val * 2;
+}, {});
+console.log(resultObj); // { a: 2, b: 4, c: 6 }
+
